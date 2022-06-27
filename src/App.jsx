@@ -15,6 +15,7 @@ class App extends Component {
     this.changeEmail = this.changeEmail.bind(this)
     this.changeUserName = this.changeUserName.bind(this)
     this.changePassword = this.changePassword.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   changeFullName(event){
@@ -49,6 +50,13 @@ class App extends Component {
     }
     axios.post('http://localhost:4000/app/signup', registered)
     .then(response => console.log(response.data))
+
+    this.setState({
+      fullName: '',
+      userName: '',
+      email: '',
+      password: ''
+    })
   }
 
   render(){
@@ -60,7 +68,7 @@ class App extends Component {
                 <input type="text" placeholder='Full Name' onChange={this.changeFullName} value={this.state.fullName} className='form-control form-group' />
                 <input type="text" placeholder='User Name' onChange={this.changeUserName} value={this.state.userName} className='form-control form-group' />
                 <input type="text" placeholder='Email' onChange={this.changeEmail} value={this.state.email} className='form-control form-group' />
-                <input type="text" placeholder='Password' onChange={this.changePassword} value={this.state.password} className='form-control form-group' />
+                <input type="password" placeholder='Password' onChange={this.changePassword} value={this.state.password} className='form-control form-group' />
                 <input type="submit" className='btn btn-danger btn-block' value='Submit'/>
               </form>
             </div>
